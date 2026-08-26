@@ -1,6 +1,6 @@
 # Meshtastic 64
 
-A Meshtastic client for the Commodore 64.
+A Meshtastic terminal for the Commodore 64.
 
 Sends and receives text messages over the Meshtastic mesh network using `TEXTMSG` serial mode.
 
