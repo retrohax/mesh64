@@ -64,14 +64,14 @@ Navigate to **Peripheral devices** $\rightarrow$ **RS232**:
 
 ## Building and Running
 
-Tokenize [mesh64.bas](mesh64.bas) with `petcat` and run it in VICE:
+Tokenize with `petcat` and run it in VICE:
 
 ```bash
 petcat -w2 -o mesh64.prg mesh64.bas
 x64sc mesh64.prg
 ```
 
-VIC-20 [meshvic20.bas](meshvic20.bas):
+For the VIC-20:
 
 ```bash
 petcat -w2 -l 1001 -o meshvic20.prg meshvic20.bas
