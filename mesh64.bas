@@ -1,4 +1,4 @@
-100 open 2,2,0,chr$(6)+chr$(0) : rem 300n81
+100 open 2,2,0,chr$(6) : rem 300n81
 200 poke 53280,0 : poke 53281,11 : poke 646,1
 205 print chr$(14); chr$(147)
 207 lk=0 : rem last key pressed time
@@ -58,18 +58,22 @@
 1250 next i
 1260 kn=0 : k$="" : pr=0 : goto 500
 2100 rem ascii to petscii
-2105 if a$=chr$(13) then return
-2150 if a$>=chr$(32) and a$<=chr$(64) then return
-2200 if a$>=chr$(65) and a$<=chr$(90) then a$=chr$(asc(a$)+128) : return
-2300 if a$>=chr$(97) and a$<=chr$(122) then a$=chr$(asc(a$)-32) : return
-2350 a$="?"
-2400 return
+2105 if a$>=chr$(97) and a$<=chr$(122) then a$=chr$(asc(a$)-32) : return
+2110 if a$>=chr$(65) and a$<=chr$(90) then a$=chr$(asc(a$)+128) : return
+2115 if a$=chr$(13) then return
+2120 if a$>=chr$(32) and a$<=chr$(64) then return
+2125 if a$>=chr$(91) and a$<=chr$(94) then return
+2130 if a$=chr$(95) then a$=chr$(164) : return
+2135 a$="?"
+2195 return
 2500 rem petscii to ascii
-2510 if a$>=chr$(32) and a$<=chr$(64) then return
-2600 if a$>=chr$(65) and a$<=chr$(90) then a$=chr$(asc(a$)+32) : return
-2700 if a$>=chr$(193) and a$<=chr$(218) then a$=chr$(asc(a$)-128) : return
-2800 a$="?"
-2950 return
+2505 if a$>=chr$(65) and a$<=chr$(90) then a$=chr$(asc(a$)+32) : return
+2510 if a$>=chr$(193) and a$<=chr$(218) then a$=chr$(asc(a$)-128) : return
+2515 if a$>=chr$(32) and a$<=chr$(64) then return
+2520 if a$>=chr$(91) and a$<=chr$(95) then return
+2525 if a$=chr$(164) then a$=chr$(95) : return
+2530 a$="?"
+2595 return
 3000 rem sanitize petscii
 3005 if a$="" then return
 3010 if a$=chr$(20) then return
