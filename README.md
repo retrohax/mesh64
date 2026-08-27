@@ -71,11 +71,11 @@ petcat -w2 -o mesh64.prg mesh64.bas
 x64sc mesh64.prg
 ```
 
-For the VIC-20:
+For VIC-20:
 
 ```bash
-petcat -w2 -l 1001 -o meshvic20.prg meshvic20.bas
-xvic meshvic20.prg
+petcat -w2 -l 1001 -o mesh64-vic20.prg mesh64-vic20.bas
+xvic mesh64-vic20.prg
 ```
 
 ---
