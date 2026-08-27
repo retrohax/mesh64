@@ -1,4 +1,4 @@
-# Meshterm
+# Mesh64
 
 A Meshtastic terminal for the Commodore 64 and others.
 

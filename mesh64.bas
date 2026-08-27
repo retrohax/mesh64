@@ -15,7 +15,7 @@
 255 c$(3)=chr$(5) : rem serial input
 265 c$(4)=chr$(153) : rem title
 270 c$(5)=chr$(150) : rem error
-300 print c$(4); "Meshterm"
+300 print c$(4); "Mesh64"
 500 rem serial input
 600 get#2,a$ : if a$="" then im=0 : goto 1000
 602 if im=0 and a$=chr$(13) then 500 : rem ignore textmsg leading cr

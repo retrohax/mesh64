@@ -1,7 +1,7 @@
 100 open 2,2,0,chr$(6)
 205 print chr$(14); chr$(147)
 210 lk=0 : lb=0 : cs=0 : im=0 : pr=0 : kn=0 : k$=""
-300 print "Meshterm"
+300 print "Mesh64"
 500 get#2,a$ : if a$="" then im=0 : goto 1000
 602 if im=0 and a$=chr$(13) then 500
 615 gosub 6000 : gosub 5000
