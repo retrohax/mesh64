@@ -15,25 +15,26 @@
 255 c$(3)=chr$(5) : rem serial input
 265 c$(4)=chr$(153) : rem title
 270 c$(5)=chr$(150) : rem error
-300 print c$(4); "Meshtastic 64"
+300 print c$(4); "Meshterm"
 500 rem serial input
 600 get#2,a$ : if a$="" then im=0 : goto 1000
 602 if im=0 and a$=chr$(13) then 500 : rem ignore textmsg leading cr
-615 gosub 6000 : rem convert utf-8 to ascii
-620 gosub 5000 : rem sanitize ascii
-622 if a$="" then 500 : rem ignore invalid ascii
-625 gosub 2100 : rem convert ascii to petscii
-626 if pr=1 then print c$(2); chr$(20); chr$(20); : pr=0 : rem clear prompt
+615 gosub 6000
+620 gosub 5000
+622 if a$="" then 500
+625 gosub 2100
+626 if pr=1 then print c$(2); chr$(20); chr$(20); : pr=0 : goto 630
+627 if im=0 then print chr$(13);
 630 print c$(3); a$; : im=1
 640 goto 500
 1000 rem keyboard input
-1005 if pr=0 then print c$(2); chr$(13); "> "; : pr=1 : rem print prompt
-1010 if kn=0 or ti-lk<400 then 1140 : rem if no keyboard input and timer not expired, continue
-1015 if ((peek(667)-peek(668)) and 255)<128 then 1140 : rem if serial buffer less than half full, continue
-1020 print c$(5); " ***"; chr$(13); chr$(13); : goto 1260 : abort keyboard input
+1005 if pr=0 then print c$(2); chr$(13); "> "; : pr=1
+1010 if kn=0 or ti-lk<400 then 1140
+1015 if ((peek(667)-peek(668)) and 255)<128 then 1140
+1020 print c$(5); " ***"; chr$(13); : goto 1260
 1140 get a$ : if a$<>"" then lk=ti
-1142 gosub 4000 : rem blink cursor
-1143 gosub 3000 : rem sanitize petscii
+1142 gosub 4000
+1143 gosub 3000
 1144 if a$="" and kn=0 then 500
 1145 if a$="" then 1000
 1150 if a$=chr$(20) then 1160
@@ -48,12 +49,12 @@
 1175 if kn=1 then print c$(0); chr$(20); : kn=0 : k$="" : goto 500
 1180 goto 500 : rem nothing to delete
 1200 rem user pressed enter or max length reached
-1201 gosub 4500 : rem turn off cursor
+1201 gosub 4500
 1212 print c$(0); chr$(13);
 1213 if kn=0 then 1260
 1215 for i=1 to kn
 1220 a$=mid$(k$,i,1)
-1230 gosub 2500 : rem petscii to ascii
+1230 gosub 2500
 1240 print#2,a$;
 1250 next i
 1260 kn=0 : k$="" : pr=0 : goto 500
@@ -98,47 +99,47 @@
 6205 get#2,b2$ : b2=asc(b2$)
 6210 get#2,b3$ : b3=asc(b3$)
 6215 if b2<>128 then 6295
-6220 if b3=147 then a$=chr$(45) : return : rem "-"
+6220 if b3=147 then a$=chr$(45) : return
 6225 if b3=148 then a$=chr$(45) : return
-6230 if b3=152 then a$=chr$(39) : return : rem "'"
+6230 if b3=152 then a$=chr$(39) : return
 6235 if b3=153 then a$=chr$(39) : return
-6240 if b3=156 then a$=chr$(34) : return : rem double quote
+6240 if b3=156 then a$=chr$(34) : return
 6245 if b3=157 then a$=chr$(34) : return
-6250 if b3=162 then a$=chr$(42) : return : rem "*"
+6250 if b3=162 then a$=chr$(42) : return
 6295 goto 6600
 6300 if b1<>194 then 6400
 6305 get#2,b2$ : b2=asc(b2$)
-6310 if b2=160 then a$=chr$(32) : return : rem " "
+6310 if b2=160 then a$=chr$(32) : return
 6395 goto 6600
 6400 if b1<>195 then 6600
 6405 get#2,b2$ : b2=asc(b2$)
-6410 if b2=160 then a$=chr$(97) : return : rem "a"
+6410 if b2=160 then a$=chr$(97) : return
 6411 if b2=161 then a$=chr$(97) : return
 6412 if b2=162 then a$=chr$(97) : return
 6413 if b2=163 then a$=chr$(97) : return
 6414 if b2=164 then a$=chr$(97) : return
 6415 if b2=165 then a$=chr$(97) : return
 6416 if b2=166 then a$=chr$(97) : return
-6417 if b2=167 then a$=chr$(99) : return : rem "c"
-6420 if b2=168 then a$=chr$(101) : return : rem "e"
+6417 if b2=167 then a$=chr$(99) : return
+6420 if b2=168 then a$=chr$(101) : return
 6425 if b2=169 then a$=chr$(101) : return
 6430 if b2=170 then a$=chr$(101) : return
 6435 if b2=171 then a$=chr$(101) : return
-6440 if b2=172 then a$=chr$(105) : return : rem "i"
+6440 if b2=172 then a$=chr$(105) : return
 6445 if b2=173 then a$=chr$(105) : return
 6450 if b2=174 then a$=chr$(105) : return
 6455 if b2=175 then a$=chr$(105) : return
-6466 if b2=177 then a$=chr$(110) : return : rem "n"
-6460 if b2=178 then a$=chr$(111) : return : rem "o"
+6466 if b2=177 then a$=chr$(110) : return
+6460 if b2=178 then a$=chr$(111) : return
 6465 if b2=179 then a$=chr$(111) : return
 6470 if b2=180 then a$=chr$(111) : return
 6475 if b2=181 then a$=chr$(111) : return
 6480 if b2=182 then a$=chr$(111) : return
 6481 if b2=183 then a$=chr$(111) : return
-6485 if b2=185 then a$=chr$(117) : return : rem "u"
+6485 if b2=185 then a$=chr$(117) : return
 6490 if b2=186 then a$=chr$(117) : return
 6495 if b2=187 then a$=chr$(117) : return
-6496 if b2=189 then a$=chr$(121) : return : rem "y"
+6496 if b2=189 then a$=chr$(121) : return
 6500 if b2=188 then a$=chr$(117) : return
 6501 if b2=191 then a$=chr$(121) : return
-6600 a$=chr$(63) : return : rem "?"
+6600 a$=chr$(63) : return

@@ -1,6 +1,6 @@
-# Meshtastic 64
+# Meshterm
 
-A Meshtastic terminal for the Commodore 64.
+A Meshtastic terminal for the Commodore 64 and others.
 
 Sends and receives text messages over the Meshtastic mesh network using `TEXTMSG` serial mode.
 
@@ -64,11 +64,18 @@ Navigate to **Peripheral devices** $\rightarrow$ **RS232**:
 
 ## Building and Running
 
-Compile [mesh64.bas](mesh64.bas) with `petcat` and run it in VICE:
+Tokenize [mesh64.bas](mesh64.bas) with `petcat` and run it in VICE:
 
 ```bash
 petcat -w2 -o mesh64.prg mesh64.bas
 x64sc mesh64.prg
+```
+
+VIC-20 [meshvic20.bas](meshvic20.bas):
+
+```bash
+petcat -w2 -l 1001 -o meshvic20.prg meshvic20.bas
+xvic meshvic20.prg
 ```
 
 ---
