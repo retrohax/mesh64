@@ -31,9 +31,11 @@ Connect the CP2102 USB-to-UART adapter to the Heltec board as follows:
 
 ## Configuration
 
-### 1. Identify Serial Port
+### 1. Identify Serial Ports
 
-Find the serial device path on your host system:
+Plug the Meshtastic device (Heltec LoRa 32) and the USB serial device (CP2102) into USB ports on the Linux host system.
+
+Find the device serial device path for both devices:
 
 ```bash
 ls -l /dev/serial/by-id
@@ -44,13 +46,13 @@ ls -l /dev/serial/by-id
 Configure the Meshtastic device for `TEXTMSG` mode over serial:
 
 ```bash
-meshtastic --port /dev/ttyUSB1 --set serial.enabled true
-meshtastic --port /dev/ttyUSB1 --set serial.echo false
-meshtastic --port /dev/ttyUSB1 --set serial.mode TEXTMSG
-meshtastic --port /dev/ttyUSB1 --set serial.baud BAUD_DEFAULT
-meshtastic --port /dev/ttyUSB1 --set serial.txd 40
-meshtastic --port /dev/ttyUSB1 --set serial.rxd 39
-meshtastic --port /dev/ttyUSB1 --get serial
+meshtastic --port /dev/ttyUSB0 --set serial.enabled true
+meshtastic --port /dev/ttyUSB0 --set serial.echo false
+meshtastic --port /dev/ttyUSB0 --set serial.mode TEXTMSG
+meshtastic --port /dev/ttyUSB0 --set serial.baud BAUD_DEFAULT
+meshtastic --port /dev/ttyUSB0 --set serial.txd 40
+meshtastic --port /dev/ttyUSB0 --set serial.rxd 39
+meshtastic --port /dev/ttyUSB0 --get serial
 ```
 
 ### 3. VICE Emulator RS-232 Settings

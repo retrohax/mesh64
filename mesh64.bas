@@ -1,5 +1,5 @@
 100 open 2,2,0,chr$(6) : rem 300n81
-200 poke 53280,0 : poke 53281,11 : poke 646,1
+200 poke 53280,0 : poke 53281,0
 205 print chr$(14); chr$(147)
 207 lk=0 : rem last key pressed time
 210 lb=0 : rem cursor last blink time
@@ -9,12 +9,12 @@
 230 kn=0 : rem keyboard buffer length
 235 k$="" : rem keyboard buffer
 240 dim c$(5) : rem color codes
-240 c$(0)=chr$(153) : rem keyboard input
-245 c$(1)=chr$(153) : rem cursor
-250 c$(2)=chr$(153) : rem prompt
+240 c$(0)=chr$(154) : rem keyboard input
+245 c$(1)=chr$(154) : rem cursor
+250 c$(2)=chr$(154) : rem prompt
 255 c$(3)=chr$(5) : rem serial input
-265 c$(4)=chr$(153) : rem title
-270 c$(5)=chr$(150) : rem error
+265 c$(4)=chr$(154) : rem title
+270 c$(5)=chr$(28) : rem error
 300 print c$(4); "Mesh64"
 500 rem serial input
 600 get#2,a$ : if a$="" then im=0 : goto 1000
